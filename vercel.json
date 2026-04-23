@@ -1,12 +1,12 @@
 {
     "experimentalServices": {
         "frontend": {
-            "framework": "html",
+            "builder": "@vercel/static",
             "routePrefix": "/"
         },
         "backend": {
-            "framework": "python",
-            "entrypoint": "backend",
+            "runtime": "python3.11",
+            "entrypoint": "backend/main.py",
             "routePrefix": "/_/backend"
         }
     }
