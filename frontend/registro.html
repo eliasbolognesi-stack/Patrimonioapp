@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - API Patrimônio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-centered">
+        <div class="auth-container">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <h1>🏛️ Patrimônio</h1>
+                    <p>Crie sua conta</p>
+                </div>
+
+                <!-- Alert Messages -->
+                <div id="alertContainer"></div>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Seu nome completo"
+                            required
+                        >
+                        <div class="form-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="seu@email.com"
+                            required
+                        >
+                        <div class="form-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Mínimo 6 caracteres"
+                            required
+                        >
+                        <div class="form-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirmar Senha</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirme sua senha"
+                            required
+                        >
+                        <div class="form-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">Departamento</label>
+                        <select id="department" name="department" required>
+                            <option value="">Selecione um departamento</option>
+                            <option value="financeiro">Financeiro</option>
+                            <option value="ti">Tecnologia da Informação</option>
+                            <option value="rh">Recursos Humanos</option>
+                            <option value="operacional">Operacional</option>
+                            <option value="administrativo">Administrativo</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                        <div class="form-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="terms" required> 
+                            Concordo com os <a href="#" style="color: var(--primary-color);">Termos de Uso</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <span id="btnText">Criar Conta</span>
+                        <span id="btnLoader" class="loading" style="display: none;"></span>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>Já tem conta? <a href="index.html">Faça login</a></p>
+                </div>
+            </div>
+
+            <!-- Requisitos de Senha -->
+            <div style="margin-top: 30px; padding: 15px; background: rgba(139, 0, 0, 0.1); border: 1px solid rgba(139, 0, 0, 0.3); border-radius: 8px;">
+                <p style="color: var(--text-secondary); font-size: 12px; margin-bottom: 10px;">🔐 Requisitos de Senha:</p>
+                <ul style="color: var(--text-secondary); font-size: 12px; margin-left: 20px;">
+                    <li>Mínimo 6 caracteres</li>
+                    <li>Deve conter letras e números</li>
+                    <li>Não pode deixar em branco</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Validação de formulário de registro
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const department = document.getElementById('department').value;
+            const terms = document.getElementById('terms').checked;
+
+            let isValid = true;
+
+            // Validações
+            if (!name || name.length < 3) {
+                showAlert('Nome deve ter pelo menos 3 caracteres', 'error');
+                document.getElementById('name').classList.add('input-error');
+                isValid = false;
+            }
+
+            if (!email.includes('@')) {
+                showAlert('Email inválido', 'error');
+                document.getElementById('email').classList.add('input-error');
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                showAlert('Senha deve ter pelo menos 6 caracteres', 'error');
+                document.getElementById('password').classList.add('input-error');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('As senhas não coincidem', 'error');
+                document.getElementById('confirmPassword').classList.add('input-error');
+                isValid = false;
+            }
+
+            if (!department) {
+                showAlert('Selecione um departamento', 'error');
+                document.getElementById('department').classList.add('input-error');
+                isValid = false;
+            }
+
+            if (!terms) {
+                showAlert('Você deve aceitar os termos de uso', 'error');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Simulação de requisição
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'block';
+
+            setTimeout(() => {
+                // Simular sucesso
+                showAlert('Conta criada com sucesso! Redirecionando para login...', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 1500);
+        });
+
+        // Limpar erro ao começar a digitar
+        ['name', 'email', 'password', 'confirmPassword', 'department'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                this.classList.remove('input-error');
+            });
+        });
+
+        // Função para mostrar alertas
+        function showAlert(message, type) {
+            const alertContainer = document.getElementById('alertContainer');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.innerHTML = `
+                ${message}
+                <span class="alert-close" onclick="this.parentElement.style.display='none';">&times;</span>
+            `;
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alertDiv);
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    alertDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Validação de força de senha em tempo real
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+
+            if (password.length >= 6) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            // Você pode adicionar um indicador de força aqui se desejar
+        });
+    </script>
+</body>
+</html>

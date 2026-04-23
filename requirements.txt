@@ -1,0 +1,6 @@
+FastAPI==0.104.1
+Uvicorn[standard]==0.24.0
+mysql-connector-python==8.0.33
+PyMySQL==1.1.0
+python-dotenv==1.0.0
+pydantic==2.5.0

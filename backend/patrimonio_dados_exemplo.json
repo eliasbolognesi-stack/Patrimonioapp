@@ -1,0 +1,67 @@
+{
+  "patrimonios": [
+    {
+      "id": 1,
+      "descricao": "Notebook Dell Inspiron 15",
+      "categoria": "Informática",
+      "valor": 3500.0,
+      "data_aquisicao": "2023-01-15",
+      "localizacao": "Sala 101",
+      "responsavel": "João Silva",
+      "status": "Ativo",
+      "data_cadastro": "2024-01-15 10:30:45",
+      "observacoes": "Em perfeito estado, processador Intel i7"
+    },
+    {
+      "id": 2,
+      "descricao": "Impressora HP LaserJet M429dw",
+      "categoria": "Periféricos",
+      "valor": 2100.0,
+      "data_aquisicao": "2023-03-20",
+      "localizacao": "Recepção",
+      "responsavel": "Maria Santos",
+      "status": "Ativo",
+      "data_cadastro": "2024-01-15 11:00:00",
+      "observacoes": "Impressora multifuncional com fax e scanner"
+    },
+    {
+      "id": 3,
+      "descricao": "Cadeira Gamer Ergonômica",
+      "categoria": "Móveis",
+      "valor": 1500.0,
+      "data_aquisicao": "2023-06-10",
+      "localizacao": "Sala de Reuniões",
+      "responsavel": "Pedro Costa",
+      "status": "Ativo",
+      "data_cadastro": "2024-01-15 11:30:00",
+      "observacoes": "Cadeira com apoio de braço ajustável"
+    },
+    {
+      "id": 4,
+      "descricao": "Monitor Samsung 27 polegadas",
+      "categoria": "Periféricos",
+      "valor": 1200.0,
+      "data_aquisicao": "2023-02-01",
+      "localizacao": "Sala 102",
+      "responsavel": "João Silva",
+      "status": "Inativo",
+      "data_cadastro": "2024-01-15 12:00:00",
+      "observacoes": "Monitor 4K com resolução de 3840x2160",
+      "data_baixa": "2024-01-10 14:30:00",
+      "motivo_baixa": "Substituído por modelo mais novo"
+    },
+    {
+      "id": 5,
+      "descricao": "Mesa de Escritório Branca",
+      "categoria": "Móveis",
+      "valor": 800.0,
+      "data_aquisicao": "2023-04-15",
+      "localizacao": "Sala 103",
+      "responsavel": "Ana Silva",
+      "status": "Ativo",
+      "data_cadastro": "2024-01-15 12:30:00",
+      "observacoes": "Mesa com gaveta lateral"
+    }
+  ],
+  "contador_id": 6
+}
