@@ -1,13 +1,26 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "framework": "vite",
-      "entrypoint": "frontend",
-      "routePrefix": "/"
+  "builds": [
+    {
+      "src": "backend/requirements.txt",
+      "use": "@vercel/python",
+      "config": {
+        "pythonVersion": "3.11",
+        "maxLambdaSize": "50mb"
+      }
     },
-    "backend": {
-      "entrypoint": "backend",
-      "routePrefix": "/_/backend"
+    {
+      "src": "frontend",
+      "use": "@vercel/static"
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/_/backend/(.*)",
+      "dest": "backend/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
 }
