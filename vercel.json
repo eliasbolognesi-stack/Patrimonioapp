@@ -1,13 +1,26 @@
 {
-    "experimentalServices": {
-        "frontend": {
-            "builder": "@vercel/static",
-            "routePrefix": "/"
-        },
-        "backend": {
-            "runtime": "python3.11",
-            "entrypoint": "backend/main.py",
-            "routePrefix": "/_/backend"
-        }
+  "builds": [
+    {
+      "src": "backend/requirements.txt",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb",
+        "pythonVersion": "3.11"
+      }
+    },
+    {
+      "src": "frontend",
+      "use": "@vercel/static"
     }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
 }
