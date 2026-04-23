@@ -1,9 +1,11 @@
 {
     "experimentalServices": {
         "frontend": {
+            "framework": "html",
             "routePrefix": "/"
         },
         "backend": {
+            "framework": "python",
             "entrypoint": "backend",
             "routePrefix": "/_/backend"
         }
