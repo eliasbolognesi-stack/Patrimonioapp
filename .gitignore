@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+backend/venv/
+backend/patrimonio.db
+backend/.secret
+.vscode/
